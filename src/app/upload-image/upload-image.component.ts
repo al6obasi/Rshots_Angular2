@@ -65,8 +65,9 @@ export class UploadImageComponent implements OnInit {
         img_uid:this.userId
         }
         // console.log(newImage);
+        // send image to the services function to send it to back-end
         this.img.addImg(newImage).subscribe( ok => {
-            this.message=ok['_body'];
+            this.message=ok;
           console.log(this.message);
         });
     }

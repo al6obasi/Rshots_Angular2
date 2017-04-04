@@ -1,11 +1,12 @@
 var image = require('../models/imageModel.js');
 
 module.exports = {
+  
   addImage:function(req,res){
     console.log(req.body);
     var img=req.body.img_data;
     var Uid=(req.body.img_uid);
-    var date= new Date().toUTCString().substr(0,16);
+    var date= new Date().toUTCString();
     image.create({
       img_date:date,
       img_uid:Uid,
@@ -32,7 +33,7 @@ module.exports = {
   },
   getAllById:function(req,res){
     console.log(req.params)
-    var userId = (req.params.userID);
+    var userId = (req.params.id);
      image.find({img_uid:userId},function(err,data){
         if (err) {
           throw err
@@ -41,13 +42,21 @@ module.exports = {
        })
   },
   getImgById:function (req,res) {
-       image.find({_id:req.params.img_id},function (err,data){
+       image.find({_id:req.params.id},function (err,data){
          if (!data.length || data === undefined ) {
            res.json('no data for this image ')
 
          }else{
+          console.log(data)
            res.json (data)
          }
        })  
-      }
+  },
+  removeImgeById:function (req , res){
+    image.remove({_id:req.params.id},function (err , data){
+        if (!err) {
+          res.json(data);
+        }
+    })
+  }
 };

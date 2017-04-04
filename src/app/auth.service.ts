@@ -1,4 +1,4 @@
-import { Injectable ,OnInit } from '@angular/core';
+import { Injectable , OnInit ,OnChanges} from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
 import { Router, NavigationStart } from '@angular/router';
 import 'rxjs/add/operator/filter';
@@ -6,11 +6,17 @@ import { UserService } from './user.service';
 // declare var Auth0Lock: any;
 let Auth0Lock: any = require('auth0-lock').default;
 @Injectable()
-export class AuthService {
+export class AuthService  {
   userId:any;
   profile:any;
-  // We'll use the Auth0 Lock widget for capturing user credentials
-lock = new Auth0Lock('6kN9HXmMKMQPM0fHUR0GiKt4iSYcX3it', 'maltobasi.auth0.com', {});
+  // We'll use the Auth0 Lock widget for capturing user credentials.
+ options = {
+  theme: {
+    logo: 'https://www.google.jo/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwivqPu9v4rTAhUEtRQKHaXUDRoQjRwIBw&url=https%3A%2F%2Fwww.awwwards.com%2F99-creative-logo-designs-for-inspiration.html&psig=AFQjCNHxsWT6xR4x3Smoz1XnYTv9u1ItGQ&ust=1491384681343601',
+    primaryColor: 'green'
+  }  
+ };
+lock = new Auth0Lock('6kN9HXmMKMQPM0fHUR0GiKt4iSYcX3it', 'maltobasi.auth0.com',this.options);
 
   constructor(private user:UserService, public router: Router) {
   this
@@ -36,14 +42,28 @@ lock = new Auth0Lock('6kN9HXmMKMQPM0fHUR0GiKt4iSYcX3it', 'maltobasi.auth0.com', 
             localStorage.setItem('profile', JSON.stringify(profile)); 
 
       });
-            this.sendInfo();
+
+           // this.sendInfo();
+    });
+    this.lock.on('authorization_error', function(error) {
+      this.lock.show({
+        flashMessage: {
+          type: 'error',
+          text: error.error_description
+          }
+      });
     });
 
 }
 
   // This method will display the lock widget
   login() {
-    this.lock.show();
+    this.lock.show({
+        allowedConnections: ["facebook" , 'twitter'],
+        allowSignUp: true, flashMessage:{
+          type: 'success',
+          text: 'maltobasi@hotmail.com'
+        }});
   }
 
   // This method will log the use out
@@ -54,7 +74,7 @@ lock = new Auth0Lock('6kN9HXmMKMQPM0fHUR0GiKt4iSYcX3it', 'maltobasi.auth0.com', 
     localStorage.removeItem('id_token');
 
     // Send the user back to the public deals page after logout
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('');
     console.log('yeaaa')
   }
 
@@ -62,14 +82,8 @@ lock = new Auth0Lock('6kN9HXmMKMQPM0fHUR0GiKt4iSYcX3it', 'maltobasi.auth0.com', 
   loggedIn() {
     return tokenNotExpired();
   }
-    sendInfo(){
-            this.profile =JSON.parse(localStorage.getItem('profile'));
-            this.userId = this.profile.clientID;
-            this.user.login(this.userId).subscribe( ok => {
-          console.log(JSON.parse(ok['_body']));
-        });;
-    }
   ngOnInit(){
+
   }
 
 }

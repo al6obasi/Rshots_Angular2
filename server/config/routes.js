@@ -12,7 +12,9 @@ module.exports = function (app, express) {
  / ============================================================================== */
 		app.get('/api/getall', imageController.getall);
 		app.post('/api/addImage', imageController.addImage);
-		app.get('/api/getAllById', imageController.getAllById);
-		app.get('/api/getImgById/:id', imageController.getAllById);
+		app.get('/api/getAllById/:id', imageController.getAllById);
+		app.get('/api/getImgById/:id', imageController.getImgById);
+		app.delete('/api/removeImgeById/:id', imageController.removeImgeById);
+
 	};
 	

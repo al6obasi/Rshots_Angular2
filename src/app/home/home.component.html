@@ -1,0 +1,22 @@
+ <section class="jumbotron text-center">
+      <div class="album text-muted">
+            <div  class="col-md-4" *ngFor="let img of images "  >
+              <img data-src="{{img.img_data}}" alt="Card image cap">
+
+              <div class="card-text">
+                  <div class="media-heading">{{img.img_date}}</div>
+           <!--        <li>
+        <a  class="navbar-brand" href="#" (click) = "advertId(ad._id)"       
+        [routerLink]="['/advertisment/'+ad._id]"  >Comments</a>
+                  </li> -->
+                  <br>
+              </div>
+      </div>
+      </div>
+    </section>
+
+
+
+
+
+
