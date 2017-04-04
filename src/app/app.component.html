@@ -1,0 +1,11 @@
+<app-nav>
+	
+</app-nav>
+<br><br>
+<h1>Welcome  in Rshots web app </h1>
+<div><p class="alert alert-success" *ngIf = "auth.loggedIn()" > You are logged in </p></div>
+<div><p class="alert alert-danger" *ngIf = "!auth.loggedIn()" > You are not logged in !!! </p></div>
+<br>
+<br>
+<router-outlet>
+</router-outlet>
