@@ -18,6 +18,7 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
+import { ImageComponent } from './image/image.component';
 
 const appRoutingProviders:any[] = [];
 const appRoutes: Routes = [
@@ -27,14 +28,22 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
 
   },
-     {
+  {
     path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard]
   },
-       {
+  {
     path: 'addImg',
     component: UploadImageComponent
+  },
+  {
+    path:'image',
+    component:ImageComponent
+  },
+  {
+    path:'image/:id',
+    component:ImageComponent
   },
   { path: "**",redirectTo:"welcome"}
 
@@ -47,7 +56,8 @@ const appRoutes: Routes = [
     HomeComponent,
     ProfileComponent,
     NavComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,

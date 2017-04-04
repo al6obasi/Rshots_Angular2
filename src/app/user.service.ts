@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 export class UserService {
 
   constructor( private http:Http) { }
+    // Image services :- 
     addImg(data){
         return this.http.post('/api/addImage',data).map(res=>res.json());
     };
@@ -20,6 +21,22 @@ export class UserService {
     };
     remove(id){
         return this.http.delete('/api/removeImgeById/'+id).map( res=>res.json());
-    }
+    };
+      // Comments services :- 
+  
+    InsertCom (data){
+      return this.http.post('/api/insertComment',data).map(res=>res.json());
+    };
+
+    getCommById (imgId){
+       return this.http.get('/api/getCommentsById/'+imgId).map(res=>res.json());
+    };
+
+    editComm (data){
+       return this.http.put('/api/editComment',data).map(res=>res.json());
+    };
+    delComm (comId){
+       return this.http.delete('/api/removeCommentById/delete/'+comId).map(res=>res.json());
+    };
 
 }

@@ -2,7 +2,11 @@ img{
 	width: 356px;
 	height: 280px;
 }
+ul{
+  font-size: 22px;
+  color: blue;
 
+}
 .jumbotron {
   padding-top: 6rem;
   padding-bottom: 6rem;
@@ -51,6 +55,6 @@ img{
 }
 
 .media-heading {
-  font-size : ;
+  font-size : 18px;
 }
 

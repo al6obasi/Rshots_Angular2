@@ -15,6 +15,7 @@ export class UploadImageComponent implements OnInit {
 	 @ViewChild('input')
 	 myinput: any;
   	constructor(private img:UserService,private changeDetectorRef: ChangeDetectorRef) {
+   this.sendInfo();
    }
 
   ngOnInit() {
@@ -73,6 +74,14 @@ export class UploadImageComponent implements OnInit {
     }
   reset() {
     this.myinput.nativeElement.value = "";
+  }
+  sendInfo(){
+    if (localStorage.getItem('profile') !== undefined ) {
+      this.profile =JSON.parse(localStorage.getItem('profile'));
+      this.img.login(this.profile).subscribe( ok => {
+          console.log(JSON.parse(ok['_body']));
+      })
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 var users = require('../models/userModel.js');
 module.exports = {
 	login:function (req , res) {
-		console.log(req.body)
+		//console.log(req.body)
 		users.find({user_id:req.body.clientID},function(err,user){
     	    if(!user.length){
 				var userid = req.body.clientID ; 
@@ -18,12 +18,14 @@ module.exports = {
 			          res.json(err);
 			        }       
 			       else{
+	  		  		console.log('added your account to our database succesfully !')
 			         res.json('added your account to our database succesfully !')
 			       }
 		       })
-  		  }else{
-	           res.json('You have an account in our database')
-  		  }
+  		    }else{
+  		  		console.log('You have an account in our database')
+	            res.json('You have an account in our database')
+  		   }
     	})
 	}
 }

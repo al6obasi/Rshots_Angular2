@@ -6,7 +6,9 @@ var image = new mongoose.Schema({
     img_uid:{
     	type: String,
        	   ref: 'users'
-       	}
+       	},
+    userPic:String,
+    userName:String   	
 });
 var img = mongoose.model('image',image)
 module.exports = img;

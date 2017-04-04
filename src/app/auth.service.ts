@@ -12,7 +12,7 @@ export class AuthService  {
   // We'll use the Auth0 Lock widget for capturing user credentials.
  options = {
   theme: {
-    logo: 'https://www.google.jo/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwivqPu9v4rTAhUEtRQKHaXUDRoQjRwIBw&url=https%3A%2F%2Fwww.awwwards.com%2F99-creative-logo-designs-for-inspiration.html&psig=AFQjCNHxsWT6xR4x3Smoz1XnYTv9u1ItGQ&ust=1491384681343601',
+    logo: "https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/15036283_1534461186580402_6434649023422279976_n.jpg?oh=f75754430b0dffcbf7f67d2dc020e04e&oe=5957E701",
     primaryColor: 'green'
   }  
  };
