@@ -11,7 +11,7 @@ export class ImageComponent implements OnInit {
 
   // property we used it in advertisment componenet 
 
-  image:any;
+  images:any;
   comments:any;
   comId:any;
   private url;
@@ -31,13 +31,14 @@ export class ImageComponent implements OnInit {
 
  constructor(private user:UserService , private route:ActivatedRoute) {
 
-  // retrive the information for the image
+  // retrive the information for the images
 		  this.url = this.route.params.subscribe( params => {
 			   this.id = params['id'];
     		   console.log(this.id);
-		})
-  		this.user.getImagesByUserId(this.id).subscribe( ok=>{
-    			 	this.image = ok;
+		});
+  		this.user.getImgById(this.id).subscribe( ok=>{
+        console.log(ok)
+    			 	this.images = ok;
       })
           // retrive all comment(s) for this advertisment order by most recent  .
       this.user.getCommById(this.id).subscribe( data =>{
@@ -67,7 +68,7 @@ export class ImageComponent implements OnInit {
    
   commentAuth(id){
     this.profile = JSON.parse( localStorage.getItem('profile') );
-    this.userId = this.profile.clientID;
+    this.userId = this.profile.user_id;
    	return ( id == this.userId ) 
    }
 
@@ -84,14 +85,14 @@ export class ImageComponent implements OnInit {
    	this.user.editComm(updateCom).subscribe(Done =>{
    		this.dump = Done ;
    	})
+    this.refreshCom();
     this.com ='';
     this.text ='';
-    this.refreshCom();
    }
   
   insertComment(){
     this.profile = JSON.parse( localStorage.getItem('profile') );
-    this.userId = this.profile.clientID;
+    this.userId = this.profile.user_id;
    
    	let newCom = {
    		userId:this.userId,
@@ -109,16 +110,14 @@ export class ImageComponent implements OnInit {
    	this.user.delComm(id).subscribe(deleted =>{
    		this.deletedDone = deleted;
    		console.log(this.deletedDone);
-   	})
-   this.refreshCom();
+      this.refreshCom();
+    })
    }
   
   isAuth(){
    	this.toggle = !this.toggle;
     this.profile = JSON.parse( localStorage.getItem('profile') );
-    console.log(this.profile);
-    this.userId = this.profile.clientID;
-	console.log(this.userId);
+    this.userId = this.profile.user_id;
 	return typeof(this.userId) === 'string'; 
    }
   

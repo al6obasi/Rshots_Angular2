@@ -1,3 +1,72 @@
-<p>
-  image works!
-</p>
+    <br>
+    <br>
+    <div class="album text-muted">
+      <div class="container">
+        <div class="row">
+
+          <div  class="col-md-4"  *ngFor="let image of images" >
+        <img class="img-circle" style="width:9%;height:19%" src="{{image.userPic}}">
+            <img class = "img" data-src="{{image.img_data}}" >
+            <p class="card-text">
+            </p>
+                <p >Posted date: {{image.img_date}}</p>
+                <p >Posted By: {{image.userName}}</p>
+
+          </div>
+        </div>
+                <br>
+                <br>
+                </div>
+                </div>
+            <div class="detailBox">
+    <div class="titleBox">
+      <label>Comment Box</label>
+        <button type="button" class="close" aria-hidden="true">&times;</button>
+
+    <br>
+    <div class="commentBox">
+
+            <div class="commentBox">
+        
+        <h3 class="taskDescription" style="color: black" *ngIf="isAuth()" > Leave your comment below </h3>
+        <h3 class="taskDescription" style="color: black" *ngIf="!isAuth()" >Sign up /Sign in to leave your comment below</h3>
+    </div>
+            <ul class="divcomment">
+                
+          <div  class="divcomment" *ngFor="let comm of comments">
+         
+                <div class="commenterImage">
+                  <img src="{{comm.userImage}}" />
+                </div>
+          		 <h4>
+          		    {{comm.username}} 	
+               </h4> 
+               <h5>
+              {{comm.text}}
+              </h5>
+          		 &nbsp; &nbsp; &nbsp; Posted date : {{comm.date}}  GMT 
+        &nbsp;	<button *ngIf = "commentAuth(comm.userId)"  (click)="editComment(comm._id)" type="submit"  >Edit</button>
+        	&nbsp;<button *ngIf = "commentAuth(comm.userId)" (click)="deleteComment(comm._id)" type="submit"   >delete</button>
+        <button  (click)="!editComment(comm._id)"  type="submit" *ngIf=toggle >Cancel</button>
+          
+          <br>
+      <hr>
+
+        <div class="col-md-12">
+      <br>
+          </div>
+        </div>
+   <br>
+                </ul>
+
+
+<button  (click)="anotherSubmit();!editComment();anotherSubmit()" type="submit" *ngIf=toggle >Post</button>
+<textarea id="myTextarea"    [hidden]=!toggle [(ngModel)]="text">
+   </textarea>
+   <input type="text" style="width: 100%;" [(ngModel)]="com" *ngIf="isAuth()" placeholder="insert comment"/>
+<button  (click)="insertComment()" type="submit"  *ngIf="isAuth()" [hidden]=toggle>Post</button>
+<br>
+<br>
+    </div>
+    </div>
+    </div>

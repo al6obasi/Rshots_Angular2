@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
         console.log('yeaa')
           this.profile = JSON.parse( localStorage.getItem('profile') );
           console.log(this.profile);
-          this.userId = this.profile.clientID;
+          this.userId = this.profile.user_id;
         	console.log(this.userId);
           this.img.getImagesByUserId(this.userId).subscribe( result =>{
                 this.images =  result.reverse() ;
@@ -46,7 +46,12 @@ export class ProfileComponent implements OnInit {
   sendInfo(){
       if (localStorage.getItem('profile') !== undefined ) {
         this.profile =JSON.parse(localStorage.getItem('profile'));
-        this.img.login(this.profile).subscribe( ok => {
+        let userData = {
+          user_id:this.profile.user_id,
+          userName:this.profile.name,
+          picture:this.profile.picture
+        }
+        this.img.login(userData).subscribe( ok => {
             console.log(JSON.parse(ok['_body']));
         })
       }

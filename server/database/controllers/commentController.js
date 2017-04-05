@@ -37,11 +37,11 @@ module.exports = {
 	},
 	getCommentsById : function (req , res) {
 		console.log(req.params)
-		 Comment.find({imgId:req.params.imgId},function(err,data){
+		 Comment.find({imgId:req.params.advId},function(err,data){
    		   if(err){
         	res.json(err)
       	   }else{
-      	   	console.log('retrived successfuly !')
+      	   	console.log('retrived successfuly !',data)
         	res.json(data)
       	   }
     	})

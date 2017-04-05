@@ -1,20 +1,18 @@
  <section class="jumbotron text-center">
-            <div  class="col-md-9" *ngFor="let img of images "  >
+            <div  class="col-md-12" *ngFor="let img of images "  >
               <ul>
-        <img class="img-circle" style="width:25%;height:40px" src="{{img.userPic}}">
+        <img class="img-circle" style="width:9%;height:19%" src="{{img.userPic}}">
               <ol> {{img.userName}}</ol>
                   <ol class="media-heading">{{img.img_date}}</ol>
               </ul>
               <img data-src="{{img.img_data}}" alt="Card image cap">
 
               <hr>
-              <div class="card-text">
-        <a  class="navbar-brand" href="#"        
-        [routerLink]="['/image/'+img._id]"  >Comments</a>
+               <a  class="navbar-brand" href="#"        
+              [routerLink]="['/image/'+img._id]"  >Comments</a>
                   <br>
-      </div>
-      </div>
-    </section>
+          </div>
+ </section>
 
 
 

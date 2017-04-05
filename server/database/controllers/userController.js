@@ -1,10 +1,10 @@
 var users = require('../models/userModel.js');
 module.exports = {
 	login:function (req , res) {
-		//console.log(req.body)
-		users.find({user_id:req.body.clientID},function(err,user){
+		console.log(req.body)
+		users.find({user_id:req.body.user_id},function(err,user){
     	    if(!user.length){
-				var userid = req.body.clientID ; 
+				var userid = req.body.user_id ; 
 				var pic = req.body.picture;
 				var name = req.body.name;
 			    var date= new Date().toUTCString().substr(0,16);

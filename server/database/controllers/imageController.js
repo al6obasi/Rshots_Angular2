@@ -50,14 +50,14 @@ module.exports = {
        })
   },
   getImgById:function (req,res) {
+    console.log(req.params)
        image.find({_id:req.params.id},function (err,data){
-         if (!data.length || data === undefined ) {
-           res.json('no data for this image ')
-
-         }else{
-          console.log(data)
-           res.json (data)
-         }
+          if (err) {
+            res.json(err)
+          }else{
+            console.log(data)
+             res.json (data)
+          }
        })  
   },
   removeImgeById:function (req , res){

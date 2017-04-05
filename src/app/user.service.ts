@@ -22,6 +22,9 @@ export class UserService {
     remove(id){
         return this.http.delete('/api/removeImgeById/'+id).map( res=>res.json());
     };
+    getImgById(id){
+        return this.http.get('/api/getImgById/'+id).map( res=>res.json());
+    }
       // Comments services :- 
   
     InsertCom (data){
