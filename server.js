@@ -22,7 +22,8 @@ require('./server/config/routes.js') (app,express);
 //=============================================================================
 /*									Database								 */
 //=============================================================================
-	var mongoURI = 'mongodb://localhost/Rshots';
+	var mongoURI = 'mongodb://rshots:987654321qwe@ds153710.mlab.com:53710/rshots2017';
+	// var mongoURI = 'mongodb://localhost/Rshots';
 	mongoose.connect(mongoURI);
 	db = mongoose.connection;
 
