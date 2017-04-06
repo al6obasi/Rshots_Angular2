@@ -34,8 +34,8 @@ export class ProfileComponent implements OnInit {
     this.img.remove(id).subscribe( result =>{
       console.log(id)
       console.log(result);
+      this.refresh();
       })
-    this.refresh();
   }
   refresh(){
     this.img.getImagesByUserId(this.userId).subscribe( result =>{

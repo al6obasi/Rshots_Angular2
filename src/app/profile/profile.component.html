@@ -1,7 +1,7 @@
 <br>
 <div class="row">
     <div class="col-md-2">
-        <img class="img-circle" style="width:100%" src="{{profile.picture}}">
+        <img class="img-circle" style="width:30%" src="{{profile.picture}}">
      </div>
      <div class="col-md-10">
          <h1>{{profile.nickname}}'s profile</h1>
@@ -14,8 +14,9 @@
 <br>
  <section class="jumbotron text-center">
       <div class="album text-muted">
+      <h3> Manage your pictures </h3>
             <div  class="col-md-4" *ngFor="let img of images "  >
-              <img data-src="{{img.img_data}}" alt="Card image cap">
+              <img class="img-square" style="width:25.5%" data-src="{{img.img_data}}">
 
               <div class="card-text">
                   <div class="media-heading">{{img.img_date}}</div>
@@ -23,8 +24,11 @@
               <ul>
                 
                <li><button class="btn-danger" type="submit" (click)="remove(img._id)">Remove image </button></li>
+              <a  class="navbar-brand" href="#"        
+              [routerLink]="['/image/'+img._id]">Comments</a>
+                  <br>
+                  <hr>
               </ul>
-                    
       </div>
       </div>
     </section>

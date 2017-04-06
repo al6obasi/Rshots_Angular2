@@ -32,7 +32,7 @@ ul{
 }
 
 .album {
-  min-height: 50rem; /* Can be removed; just added for demo purposes */
+  /*min-height: 50rem;  Can be removed; just added for demo purposes */
   padding-top: 3rem;
   padding-bottom: 3rem;
   background-color: #f7f7f7;
@@ -46,7 +46,7 @@ ul{
   border: 0;
 }
 
-.card > img {
+.card img {
   margin-bottom: .75rem;
 }
 

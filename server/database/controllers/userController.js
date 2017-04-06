@@ -6,7 +6,7 @@ module.exports = {
     	    if(!user.length){
 				var userid = req.body.user_id ; 
 				var pic = req.body.picture;
-				var name = req.body.name;
+				var name = req.body.userName;
 			    var date= new Date().toUTCString().substr(0,16);
 		        users.create({
 			      userDate:date,

@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ImageComponent implements OnInit {
 
-  // property we used it in advertisment componenet 
+  // property we used it in image componenet 
 
   images:any;
   comments:any;
@@ -24,23 +24,23 @@ export class ImageComponent implements OnInit {
   inserted:any;
   deletedDone:any;
   dump :any;
-  AvgRating:any;
   profile:any;
 
    //  constructor 
 
  constructor(private user:UserService , private route:ActivatedRoute) {
+  // get the img _ id from params 
 
+      this.url = this.route.params.subscribe( params => {
+         this.id = params['id'];
+           console.log(this.id);
+    });
   // retrive the information for the images
-		  this.url = this.route.params.subscribe( params => {
-			   this.id = params['id'];
-    		   console.log(this.id);
-		});
   		this.user.getImgById(this.id).subscribe( ok=>{
         console.log(ok)
     			 	this.images = ok;
       })
-          // retrive all comment(s) for this advertisment order by most recent  .
+          // retrive all comment(s) for this image order by most recent  .
       this.user.getCommById(this.id).subscribe( data =>{
           this.comments = data.reverse() ;
         	if (!data.length) {
@@ -52,16 +52,7 @@ export class ImageComponent implements OnInit {
         	}
        //   console.log(data)
       })
-      // retrive the average rating for this advertisment 
-     //  this.user.getAllRatingByAdID(this.id).subscribe( data =>{
-     //      if (typeof(data) === 'string') {
-     //      this.AvgRating =  0 ;
-     //      }
-     //      else{
-     //          this.AvgRating = Math.floor(data) ;
-     //       //   console.log(data);
-     //      }
-     // })
+     
    }
 
   // ******** Comment functions ********* 
@@ -84,8 +75,8 @@ export class ImageComponent implements OnInit {
    	}
    	this.user.editComm(updateCom).subscribe(Done =>{
    		this.dump = Done ;
-   	})
-    this.refreshCom();
+      this.refreshCom();
+    })
     this.com ='';
     this.text ='';
    }
@@ -133,53 +124,9 @@ export class ImageComponent implements OnInit {
   }
   ngOnChanges() {
       this.refreshCom();
-//      this.retriveRating();
   }
 
 
 }
-//
 
-//export class AdvertismentComponent implements OnInit {
-
-  // //  ******** rating functions ********* 
-  
-  // insertRateAdv(advId,value){
-  //  // console.log(advId,value)
-  //   this.dump = '';
-  //   this.userId =localStorage.getItem('id');
-  //   this.userId =JSON.parse(this.userId);
-  //   let rate ={
-  //     value:Number(value),
-  //     postedBy:this.userId,
-  //     advertismentId:advId 
-  //   }
-  //   this.user.insertRate(rate).subscribe( Done =>{
-  //     this.dump = Done ;
-  //   })
-  //   this.val = 0;
-  //   this.retriveRating();
-  // }
-
-  // retriveRating(){
-  //   //console.log(this.id);
-  //   this.user.getAllRatingByAdID(this.id).subscribe( Done =>{
-  //       this.AvgRating= Done ;
-  //   })
-  //   // console.log(this.AvgRating);
-  // }
-
-  // refreshRating(){
-  //         this.user.getAllRatingByAdID(this.id).subscribe( data =>{
-  //             if (typeof(data) === 'string') {
-  //             this.AvgRating =  0 ;
-  //             }
-  //             else{
-  //               this.AvgRating = data ;
-  //               console.log(data);
-  //            }
-  //       })
-  // }
-
-//}
 
